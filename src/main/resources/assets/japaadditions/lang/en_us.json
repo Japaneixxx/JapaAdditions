@@ -1,5 +1,6 @@
 {
-  "item.japaadditions.testitem": "Test Item",
+  "item.japaadditions.testitem": "Fancy Pickaxe",
 
-  "message.testitem": "Test item with charge %s"
+  "message.testitem.tooltip": "Mine with distance %s",
+  "message.testitem.change": "Changed distance to %s"
 }
