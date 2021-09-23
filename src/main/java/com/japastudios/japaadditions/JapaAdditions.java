@@ -1,5 +1,6 @@
 package com.japastudios.japaadditions;
 
+import com.japastudios.setup.ClientSetup;
 import com.japastudios.setup.Registration;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -34,6 +35,7 @@ public class JapaAdditions
 
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         bus.addListener(this::setup);
+        bus.addListener(ClientSetup::setup);
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);

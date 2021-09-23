@@ -17,6 +17,7 @@ import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.ForgeMod;
 
@@ -63,16 +64,18 @@ public class TestItem extends PickaxeItem {
                 CompoundTag tag = stack.getOrCreateTag();
                 boolean mining = tag.getBoolean("mining");
                 if (!mining){
-                    tag.putBoolean("mining", true);
                     BlockHitResult hit = trace(level, entity);
-                    for (int i = 0; i < distance; i++) {
-                        BlockPos relative = pos.relative(hit.getDirection().getOpposite(), i + 1);
-                        if (!tryHarvest(stack,entity,relative)) {
-                            tag.putBoolean("mining", false);
-                            return result;
+                    if (hit.getType() == HitResult.Type.BLOCK) {
+                        tag.putBoolean("mining", true);
+                        for (int i = 0; i < distance; i++) {
+                            BlockPos relative = pos.relative(hit.getDirection().getOpposite(), i + 1);
+                            if (!tryHarvest(stack, entity, relative)) {
+                                tag.putBoolean("mining", false);
+                                return result;
+                            }
                         }
+                        tag.putBoolean("mining", false);
                     }
-                    tag.putBoolean("mining", false);
                 }
             }
         }
@@ -81,7 +84,7 @@ public class TestItem extends PickaxeItem {
 
     private boolean tryHarvest(ItemStack stack, LivingEntity entityLiving, BlockPos pos) {
         BlockState state = entityLiving.level.getBlockState(pos);
-        if (canHarvestBlock(stack, state)) {
+        if (isCorrectToolForDrops(stack, state)) {
             if(entityLiving instanceof  ServerPlayer player){
                 return  player.gameMode.destroyBlock(pos);
             }

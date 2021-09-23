@@ -16,9 +16,9 @@ public class Items extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        singleTexture(Registration.TESTITEM.get().getRegistryName().getPath(),
-        new ResourceLocation("item/handheld"),
-        "layer0",
-        new ResourceLocation(JapaAdditions.MODID, "item/firstitem"));
+//        singleTexture(Registration.TESTITEM.get().getRegistryName().getPath(),
+//        new ResourceLocation("item/handheld"),
+//        "layer0",
+//        new ResourceLocation(JapaAdditions.MODID, "item/firstitem"));
     }
 }

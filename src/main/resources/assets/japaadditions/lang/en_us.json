@@ -1,6 +1,6 @@
 {
   "item.japaadditions.testitem": "Fancy Pickaxe",
 
-  "message.testitem.tooltip": "Mine with distance %s",
-  "message.testitem.change": "Changed distance to %s"
+  "message.testitem.tooltip": "Mine with extra distance %s",
+  "message.testitem.change": "Changed extra distance to %s"
 }

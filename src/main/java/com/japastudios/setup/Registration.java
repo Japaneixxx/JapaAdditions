@@ -17,6 +17,6 @@ public class Registration {
         ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 
-    public static final RegistryObject<Item> TESTITEM = ITEMS.register("testitem", () -> new TestItem(new Item.Properties()));
+    public static final RegistryObject<TestItem> TESTITEM = ITEMS.register("testitem", () -> new TestItem(new Item.Properties()));
 
 }
